@@ -16,12 +16,12 @@
 
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-dbcp -->
+       <!-- &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-dbcp &ndash;&gt;
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
             <version>10.1.0-M16</version>
-        </dependency>
+        </dependency>-->
 
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->

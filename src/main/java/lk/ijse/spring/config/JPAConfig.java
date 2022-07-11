@@ -1,13 +1,12 @@
 package lk.ijse.spring.config;
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jndi.JndiTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -21,7 +20,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "lk.ijse.spring")
+@EnableJpaRepositories(basePackages = "lk.ijse.spring.repo")
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 public class JPAConfig {
@@ -30,7 +29,7 @@ public class JPAConfig {
     Environment env;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource ds, JpaVendorAdapter va){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds, JpaVendorAdapter va) {
         LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
         bean.setJpaVendorAdapter(va);
         bean.setDataSource(ds);
@@ -40,16 +39,12 @@ public class JPAConfig {
 
     @Bean
     public DataSource dataSource() throws NamingException {
-        //DBCP(TomCat)
-        BasicDataSource bds = new BasicDataSource();
-        bds.setDriverClassName(env.getRequiredProperty("my.app.driverclassname"));
-        bds.setUrl(env.getRequiredProperty("my.app.url"));
-        bds.setUsername(env.getRequiredProperty("my.app.username"));
-        bds.setPassword(env.getRequiredProperty("my.app.password"));
-        bds.setMaxTotal(5);
-        bds.setInitialSize(5);
-
-        return bds;
+        DriverManagerDataSource dataSource= new DriverManagerDataSource();
+        dataSource.setUrl(env.getRequiredProperty("my.app.url"));
+        dataSource.setUsername(env.getRequiredProperty("my.app.username"));
+        dataSource.setPassword(env.getRequiredProperty("my.app.password"));
+        dataSource.setDriverClassName(env.getRequiredProperty("my.app.driverclassname"));
+        return dataSource;
     }
 
     @Bean
@@ -66,4 +61,6 @@ public class JPAConfig {
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
     }
+
+
 }
