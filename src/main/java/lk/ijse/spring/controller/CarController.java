@@ -46,6 +46,4 @@ public class CarController {
     public ResponseUtil getAllCars(){
         return new ResponseUtil(200,"ok",service.getAllCars());
     }
-
-
 }
