@@ -23,7 +23,7 @@ public class DriverController {
         driverService.saveDriver(d);
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public void getAllDetails(){
         driverService.getAllDrivers();
     }

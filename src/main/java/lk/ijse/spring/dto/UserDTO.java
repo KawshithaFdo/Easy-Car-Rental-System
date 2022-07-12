@@ -10,9 +10,9 @@ import lombok.ToString;
 @Data
 @ToString
 public class UserDTO {
+    private String nic;
     private String email;
     private String password;
-    private String nic;
     private String drivingNo;
     private String address;
     private String contact;

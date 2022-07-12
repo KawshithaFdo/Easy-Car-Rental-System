@@ -10,8 +10,8 @@ import lombok.ToString;
 @Data
 @ToString
 public class DriverDTO {
+    private String nic;
     private String name;
     private String address;
     private String contact;
-    private String nic;
 }

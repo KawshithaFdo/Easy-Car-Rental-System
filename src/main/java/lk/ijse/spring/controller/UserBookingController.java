@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 public class UserBookingController {
 
-//    @PostMapping
-    public void login(){}
+   // @PostMapping
+    public void login(){
+
+    }
 
 //    @PostMapping
     public void placeRental(){}

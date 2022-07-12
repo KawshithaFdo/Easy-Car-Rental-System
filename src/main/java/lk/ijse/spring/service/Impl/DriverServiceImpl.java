@@ -2,6 +2,7 @@ package lk.ijse.spring.service.Impl;
 
 import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.dto.UserDTO;
+import lk.ijse.spring.entity.Driver;
 import lk.ijse.spring.entity.User;
 import lk.ijse.spring.repo.DriverRepo;
 import lk.ijse.spring.service.DriverService;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Driver;
 import java.util.List;
 @Service
 @Transactional

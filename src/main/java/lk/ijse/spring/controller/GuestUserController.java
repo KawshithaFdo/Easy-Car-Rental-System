@@ -21,7 +21,7 @@ public class GuestUserController {
         userService.saveUser(user);
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public void getAllUsers(){
         userService.getAllUsers();
     }

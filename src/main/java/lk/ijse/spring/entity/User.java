@@ -14,10 +14,10 @@ import javax.persistence.Id;
 @ToString
 @Entity
 public class User {
-    private String email;
-    private String password;
     @Id
     private String nic;
+    private String email;
+    private String password;
     private String drivingNo;
     private String address;
     private String contact;
