@@ -31,6 +31,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void loginUser(String user_Name, String password) {
+        if (repo.existsById(user_Name)) {
+            User u = repo.getReferenceById(user_Name);
+            if (!u.getPassword().equals(password)) {
+                throw new RuntimeException("Please enter valid Password.");
+            }
+        }else {
+            throw new RuntimeException("Please enter valid User Name.");
+        }
+    }
+
+    @Override
     public void deleteUser(String id) {
         repo.deleteById(id);
     }

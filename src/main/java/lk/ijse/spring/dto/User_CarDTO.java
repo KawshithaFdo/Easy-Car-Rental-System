@@ -5,16 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Id;
+import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @ToString
-public class UserDTO {
+public class User_CarDTO {
     private String nic;
-    private String email;
-    private String user_Name;
-    private String password;
-    private String drivingNo;
-    private String address;
-    private String contact;
+    private String reg_No;
+    private LocalDate pickup_Date;
+    private LocalDate return_Date;
+    private String driver_Status;
 }

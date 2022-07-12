@@ -1,14 +1,22 @@
 package lk.ijse.spring.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import lk.ijse.spring.entity.User;
+import lk.ijse.spring.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 public class UserBookingController {
 
-   // @PostMapping
-    public void login(){
+    @Autowired
+    UserService userService;
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(params = {"user_Name","password"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public void login(@RequestParam String user_Name,@RequestParam String password){
+       userService.loginUser(user_Name,password);
     }
 
 //    @PostMapping
