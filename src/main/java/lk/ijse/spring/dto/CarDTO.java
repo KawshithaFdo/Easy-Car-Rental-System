@@ -17,8 +17,9 @@ public class CarDTO {
     private String no_ofPassengers;
     private String transmission;
     private String fuel;
-    private String daily_Price;
-    private String monthly_Price;
-    private String free_Milage;
-    private String extra_Price;
+    private String rent_type;
+    private int dailyrate;
+    private int monthlyrate;
+    private int free_Milage;
+    private int extra_Price;
 }

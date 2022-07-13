@@ -4,6 +4,7 @@ import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.dto.User_CarDTO;
 import lk.ijse.spring.entity.Driver;
 import lk.ijse.spring.entity.User_Car;
+import lk.ijse.spring.repo.CarRepo;
 import lk.ijse.spring.repo.User_CarRepo;
 import lk.ijse.spring.service.User_CarService;
 import org.modelmapper.ModelMapper;
@@ -19,6 +20,9 @@ public class User_CarServiceImpl implements User_CarService {
 
     @Autowired
     private User_CarRepo repo;
+
+    @Autowired
+    private CarRepo car;
 
     @Autowired
     private ModelMapper mapper;
@@ -50,6 +54,11 @@ public class User_CarServiceImpl implements User_CarService {
     }
 
     @Override
+    public String  getdriverstatus(String id) {
+       return repo.getReferenceById(id).getDriver_Status();
+    }
+
+    @Override
     public User_CarDTO searchBooking(String nic,String regno) {
        return mapper.map(repo.findUser_CarByNicAndReg_No(nic,regno).getCars(),User_CarDTO.class);
     }
@@ -58,5 +67,49 @@ public class User_CarServiceImpl implements User_CarService {
     public List<User_CarDTO> getAllBookings() {
         return mapper.map(repo.findAllByUser_Car(),new TypeToken<List<User_CarDTO>>() {
         }.getType());
+    }
+
+    @Override
+    public int calculatebill(String id, boolean damage) {
+        int damagecost=0;
+        if (damage==true){
+            if (car.getReferenceById(id).getType().equals("General")) {
+                damagecost=10000;
+            }else{
+                if (car.getReferenceById(id).getType().equals("Premium")) {
+                    damagecost=15000;
+                }else{
+                    damagecost=20000;
+                }
+            }
+        }
+
+        int duration = repo.getReferenceById(id).getDuration();
+        int i = duration -(car.getReferenceById(id).getFree_Milage());
+        int rentalfee=0;
+        //Daily rental
+        if (car.getReferenceById(id).getRent_type().equals("Daily")) {
+            //Daily full milage is 150 km
+            if((i)<=150){
+                //No extra milage
+                rentalfee=(i*car.getReferenceById(id).getDailyrate())+damagecost;
+            }else{
+                //have extra milage
+                rentalfee=(150*car.getReferenceById(id).getDailyrate())+damagecost+(i-150)*car.getReferenceById(id).getExtra_Price();
+            }
+
+        }
+        //Monthly
+        else{
+            //Monthly full milage is 5000 km
+            if((i)<=5000){
+                //No extra milage
+                rentalfee=(i*car.getReferenceById(id).getMonthlyrate())+damagecost;
+            }else{
+                //have extra milage
+                rentalfee=(5000*car.getReferenceById(id).getMonthlyrate())+damagecost+(i-5000)*car.getReferenceById(id).getExtra_Price();
+            }
+        }
+        return rentalfee;
     }
 }

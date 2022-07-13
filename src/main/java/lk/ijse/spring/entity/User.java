@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,6 +23,10 @@ public class User {
     private String address;
     private String contact;
 
-    @OneToMany(mappedBy = "User",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL)
     private List<User_Car> userdetails;
+
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @JoinColumn(name = "adminId",referencedColumnName = "Username",nullable = false)
+    private Admin admin;
 }

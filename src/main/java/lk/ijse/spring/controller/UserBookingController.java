@@ -33,12 +33,8 @@ public class UserBookingController {
         return new ResponseUtil(200,"Success",null);
     }
 
-   /* @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public void viewRentalStatus(){
-    }*/
-
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateCustomer(@ModelAttribute UserDTO user){
+    public ResponseUtil updateUser(@ModelAttribute UserDTO user){
         userService.saveUser(user);
         return new ResponseUtil(200,"Updated",null);
     }

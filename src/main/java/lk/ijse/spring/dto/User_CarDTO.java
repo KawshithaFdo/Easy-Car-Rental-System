@@ -17,4 +17,6 @@ public class User_CarDTO {
     private LocalDate pickup_Date;
     private LocalDate return_Date;
     private String driver_Status;
+    private int damagecost;
+    private int duration;
 }

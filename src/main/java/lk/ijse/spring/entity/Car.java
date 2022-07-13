@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,8 +23,11 @@ public class Car {
     private String no_ofPassengers;
     private String transmission;
     private String fuel;
-    private String daily_Price;
-    private String monthly_Price;
-    private String free_Milage;
-    private String extra_Price;
+    private String rent_type;
+    private int dailyrate;
+    private int monthlyrate;
+    private int free_Milage;
+    private int extra_Price;
+    @OneToOne(targetEntity = Driver.class)
+    private Driver driver;
 }

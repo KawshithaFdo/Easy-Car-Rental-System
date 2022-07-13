@@ -17,26 +17,6 @@ public class CarController {
     @Autowired
     CarService service;
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveCar(@ModelAttribute CarDTO car) {
-        service.saveCar(car);
-        return new ResponseUtil(200,"Save",null);
-    }
-
-
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateCar(@RequestBody CarDTO car) {
-        service.updateCar(car);
-        return new ResponseUtil(200,"Updated",null);
-    }
-
-    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteCar(@RequestParam String id) {
-        service.deleteCar(id);
-        return new ResponseUtil(200,"Deleted",null);
-    }
-
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil searchCar(@PathVariable String id) {
         return new ResponseUtil(200,"Ok",service.searchCar(id));

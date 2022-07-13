@@ -70,4 +70,5 @@ public class UserServiceImpl implements UserService {
         return mapper.map(repo.findAll(), new TypeToken<List<UserDTO>>() {
         }.getType());
     }
+
 }

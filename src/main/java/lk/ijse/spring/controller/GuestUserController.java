@@ -1,6 +1,7 @@
 package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.UserDTO;
+import lk.ijse.spring.service.CarService;
 import lk.ijse.spring.service.UserService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class GuestUserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    CarService car;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil SaveUser(@ModelAttribute UserDTO user){
@@ -24,7 +28,7 @@ public class GuestUserController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil getAllUsers(){
-       return new ResponseUtil(200,"ok",userService.getAllUsers());
+    public ResponseUtil getAllCars(){
+       return new ResponseUtil(200,"ok",car.getAllCars());
     }
 }
