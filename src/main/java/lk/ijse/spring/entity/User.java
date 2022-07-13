@@ -26,7 +26,4 @@ public class User {
     @OneToMany(mappedBy = "users",cascade = CascadeType.ALL)
     private List<User_Car> userdetails;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "adminId",referencedColumnName = "Username",nullable = false)
-    private Admin admin;
 }

@@ -20,6 +20,4 @@ public class Driver {
     private String name;
     private String address;
     private String contact;
-    @OneToOne(targetEntity = Car.class)
-    private Car car;
 }

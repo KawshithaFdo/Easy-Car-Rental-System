@@ -56,9 +56,9 @@ public class AdminController {
        return new ResponseUtil(200,"ok",user.getAllUsers());
     }
 
-    @GetMapping(path = "/{id},/{damage}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil calculatebill(@RequestParam String id,Boolean damage){
-        return new ResponseUtil(200,"ok",userCarService.calculatebill(id,damage));
+    @GetMapping(path = "/{nic},/{regno},/{damage}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil calculatebill(@RequestParam String nic,String regno,Boolean damage){
+        return new ResponseUtil(200,"ok",userCarService.calculatebill(nic,regno,damage));
     }
     
 }

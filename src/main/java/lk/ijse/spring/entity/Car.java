@@ -23,11 +23,9 @@ public class Car {
     private String no_ofPassengers;
     private String transmission;
     private String fuel;
-    private String rent_type;
     private int dailyrate;
     private int monthlyrate;
     private int free_Milage;
     private int extra_Price;
-    @OneToOne(targetEntity = Driver.class)
-    private Driver driver;
+
 }

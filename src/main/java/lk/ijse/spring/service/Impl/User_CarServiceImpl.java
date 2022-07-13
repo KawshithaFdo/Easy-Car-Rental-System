@@ -70,13 +70,13 @@ public class User_CarServiceImpl implements User_CarService {
     }
 
     @Override
-    public int calculatebill(String id, boolean damage) {
+    public int calculatebill(String nic,String regno, boolean damage) {
         int damagecost=0;
         if (damage==true){
-            if (car.getReferenceById(id).getType().equals("General")) {
+            if (car.getReferenceById(regno).getType().equals("General")) {
                 damagecost=10000;
             }else{
-                if (car.getReferenceById(id).getType().equals("Premium")) {
+                if (car.getReferenceById(regno).getType().equals("Premium")) {
                     damagecost=15000;
                 }else{
                     damagecost=20000;
@@ -84,18 +84,18 @@ public class User_CarServiceImpl implements User_CarService {
             }
         }
 
-        int duration = repo.getReferenceById(id).getDuration();
-        int i = duration -(car.getReferenceById(id).getFree_Milage());
+        int duration = repo.findUser_CarByNicAndReg_No(nic,regno).getDuration();
+        int i = duration -(car.getReferenceById(regno).getFree_Milage());
         int rentalfee=0;
         //Daily rental
-        if (car.getReferenceById(id).getRent_type().equals("Daily")) {
+        if (repo.findUser_CarByNicAndReg_No(nic,regno).getRent_type().equals("Daily")) {
             //Daily full milage is 150 km
             if((i)<=150){
                 //No extra milage
-                rentalfee=(i*car.getReferenceById(id).getDailyrate())+damagecost;
+                rentalfee=(i*car.getReferenceById(regno).getDailyrate())+damagecost;
             }else{
                 //have extra milage
-                rentalfee=(150*car.getReferenceById(id).getDailyrate())+damagecost+(i-150)*car.getReferenceById(id).getExtra_Price();
+                rentalfee=(150*car.getReferenceById(regno).getDailyrate())+damagecost+(i-150)*car.getReferenceById(regno).getExtra_Price();
             }
 
         }
@@ -104,10 +104,10 @@ public class User_CarServiceImpl implements User_CarService {
             //Monthly full milage is 5000 km
             if((i)<=5000){
                 //No extra milage
-                rentalfee=(i*car.getReferenceById(id).getMonthlyrate())+damagecost;
+                rentalfee=(i*car.getReferenceById(regno).getMonthlyrate())+damagecost;
             }else{
                 //have extra milage
-                rentalfee=(5000*car.getReferenceById(id).getMonthlyrate())+damagecost+(i-5000)*car.getReferenceById(id).getExtra_Price();
+                rentalfee=(5000*car.getReferenceById(regno).getMonthlyrate())+damagecost+(i-5000)*car.getReferenceById(regno).getExtra_Price();
             }
         }
         return rentalfee;

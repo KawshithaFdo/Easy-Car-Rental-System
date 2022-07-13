@@ -21,6 +21,7 @@ public class User_Car {
     private LocalDate pickup_Date;
     private LocalDate return_Date;
     private String driver_Status;
+    private String rent_type;
     private int damagecost;
     private int duration;
 
@@ -31,4 +32,7 @@ public class User_Car {
     @ManyToOne
     @JoinColumn(name = "reg_No",referencedColumnName = "reg_No",insertable = false,updatable = false)
     private Car cars;
+
+    @OneToOne(targetEntity = Driver.class)
+    private Driver driver;
 }

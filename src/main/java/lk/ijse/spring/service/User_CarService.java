@@ -12,5 +12,5 @@ public interface User_CarService {
     String getdriverstatus(String id);
     User_CarDTO searchBooking(String nic,String regno);
     List<User_CarDTO> getAllBookings();
-    int calculatebill(String id ,boolean type);
+    int calculatebill(String nic,String regno ,boolean type);
 }

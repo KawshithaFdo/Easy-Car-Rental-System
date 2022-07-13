@@ -1,4 +1,6 @@
 package lk.ijse.spring.service.Impl;
 
-public class AdminServiceImpl {
+import lk.ijse.spring.service.AdminService;
+
+public class AdminServiceImpl implements AdminService {
 }

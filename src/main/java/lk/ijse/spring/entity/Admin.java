@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class Admin {
     @Id
-    private String Username;
+    private String Adminname;
     private String Password;
 
 }
