@@ -10,5 +10,8 @@
         <module name="Easy_Car_Rental_System" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Front_End" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
