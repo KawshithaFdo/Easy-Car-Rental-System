@@ -17,9 +17,9 @@ public class CarController {
     @Autowired
     CarService service;
 
-    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchCar(@PathVariable String id) {
-        return new ResponseUtil(200,"Ok",service.searchCar(id));
+    @GetMapping(params = {"nic"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchcar(@RequestParam String nic) {
+        return new ResponseUtil(200,"Ok",service.searchCar(nic));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

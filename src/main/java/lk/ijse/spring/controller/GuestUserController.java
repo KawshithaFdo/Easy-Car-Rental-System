@@ -22,7 +22,7 @@ public class GuestUserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil SaveUser(@ModelAttribute UserDTO user){
+    public ResponseUtil SaveUser(@RequestBody UserDTO user){
         userService.saveUser(user);
         return new ResponseUtil(200,"Saved",null);
     }

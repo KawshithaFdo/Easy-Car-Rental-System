@@ -1,5 +1,6 @@
 package lk.ijse.spring.service.Impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.spring.dto.UserDTO;
 import lk.ijse.spring.entity.User;
 import lk.ijse.spring.repo.UserRepo;
@@ -32,15 +33,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void loginUser(String user_Name, String password) {
-        if (repo.existsById(user_Name)) {
-            User u = repo.getReferenceById(user_Name);
-            if (!u.getPassword().equals(password)) {
-                throw new RuntimeException("Please enter valid Password.");
-            }
-        }else {
-            throw new RuntimeException("Please enter valid User Name.");
+        if (!(repo.loginuser(user_Name).getPassword().equals(password))){
+            throw new RuntimeException("Invalid User_Name or Password.");
+
+        }else{
+            System.out.println("equal");
         }
     }
+
 
     @Override
     public void deleteUser(String id) {

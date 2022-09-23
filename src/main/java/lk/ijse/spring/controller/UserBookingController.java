@@ -2,12 +2,11 @@ package lk.ijse.spring.controller;
 
 import lk.ijse.spring.dto.UserDTO;
 import lk.ijse.spring.dto.User_CarDTO;
-import lk.ijse.spring.entity.User;
+import lk.ijse.spring.service.AdminService;
 import lk.ijse.spring.service.UserService;
 import lk.ijse.spring.service.User_CarService;
 import lk.ijse.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -23,22 +22,36 @@ public class UserBookingController {
     @Autowired
     User_CarService service;
 
+    @Autowired
+    AdminService adminService;
+
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(params = {"user_Name","password"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(params = {"user_Name","password"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil login(@RequestParam String user_Name,@RequestParam String password){
        userService.loginUser(user_Name,password);
        return new ResponseUtil(200,"Success",null);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil placeRental(@ModelAttribute User_CarDTO user){
+    public ResponseUtil placebooking(@RequestBody User_CarDTO user){
         service.addBooking(user);
         return new ResponseUtil(200,"Success",null);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateUser(@ModelAttribute UserDTO user){
-        userService.saveUser(user);
+    public ResponseUtil updateUser(@RequestBody UserDTO user){
+        userService.updateUser(user);
         return new ResponseUtil(200,"Updated",null);
+    }
+
+    @GetMapping(params = {"nic"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchuser(@RequestParam String nic){
+        UserDTO userDTO = userService.searchUser(nic);
+        return new ResponseUtil(200,"Success",userDTO);
+    }
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllUsers(){
+        return new ResponseUtil(200,"ok",userService.getAllUsers());
     }
 }

@@ -1,5 +1,6 @@
 package lk.ijse.spring.config;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,11 +40,12 @@ public class JPAConfig {
 
     @Bean
     public DataSource dataSource() throws NamingException {
-        DriverManagerDataSource dataSource= new DriverManagerDataSource();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl(env.getRequiredProperty("my.app.url"));
         dataSource.setUsername(env.getRequiredProperty("my.app.username"));
         dataSource.setPassword(env.getRequiredProperty("my.app.password"));
         dataSource.setDriverClassName(env.getRequiredProperty("my.app.driverclassname"));
+
         return dataSource;
     }
 

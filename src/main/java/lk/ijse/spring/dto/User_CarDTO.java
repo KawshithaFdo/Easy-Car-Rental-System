@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Id;
+import java.sql.Date;
 import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,10 +15,13 @@ import java.time.LocalDate;
 public class User_CarDTO {
     private String nic;
     private String reg_No;
-    private LocalDate pickup_Date;
-    private LocalDate return_Date;
+    private String pickup_Date;
+    private String return_Date;
     private String driver_Status;
     private String rent_type;
+    private String driver_nic;
     private int damagecost;
     private int duration;
+    private String status;
+    private String price;
 }

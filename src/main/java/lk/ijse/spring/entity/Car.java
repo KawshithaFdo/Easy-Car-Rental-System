@@ -19,13 +19,14 @@ public class Car {
     private String reg_No;
     private String color;
     private String brand;
-    private String type;
     private String no_ofPassengers;
     private String transmission;
     private String fuel;
     private int dailyrate;
     private int monthlyrate;
-    private int free_Milage;
+    private int free_Milage_forDay;
+    private int free_Milage_forMonth;
     private int extra_Price;
+    private String car_type;
 
 }
